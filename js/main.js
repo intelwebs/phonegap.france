@@ -19,8 +19,11 @@ var app = {
 		$.ajax({
 			url: 'http://melexo.ru/mobile/',
 			success: function(html) {
-				var result = html.search(/<body>(.*)<\/body>/);
-				$('#mainContent').html(result[1]);
+				var start = html.search(/<body>/);
+				var end = html.search(/<\/body>/);
+				var result = html.substr(start + 6, end - start - 6);
+
+				$('#mainContent').html(result);
 			}
 		})
 	},
